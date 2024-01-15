@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "baseUrl": "../",
+    "target": "ES2018",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "declaration": true,
+    "pretty": true,
+    "noEmitOnError": true,
+    "strict": true,
+    "types": ["node"],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "removeComments": true,
+    "noUnusedLocals": true,
+    "noFallthroughCasesInSwitch": true,
+    "useDefineForClassFields": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "outDir": "../dist",
+    "sourceMap": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["../src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
