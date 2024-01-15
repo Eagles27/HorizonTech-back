@@ -41,6 +41,7 @@
     "fastify-plugin": "^4.5.0",
     "fastify-type-provider-zod": "^1.1.9",
     "husky": "^8.0.3",
+    "mongodb": "^6.3.0",
     "mongoose": "^8.0.4",
     "pino": "^8.14.1",
     "pino-pretty": "^10.0.1",

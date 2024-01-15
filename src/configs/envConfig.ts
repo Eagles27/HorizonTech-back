@@ -6,6 +6,7 @@ dotenv.config()
 const envSchema = z.object({
   NODE_ENV: z.enum(['dev', 'production', 'test', 'local']).default('dev'),
   PORT: z.string().transform((port) => parseInt(port, 10)),
+  MONGO_URI: z.string(),
 })
 
 const envConfig = envSchema.parse(process.env)
