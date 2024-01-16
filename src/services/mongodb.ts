@@ -1,17 +1,13 @@
 import envConfig from '@/configs/envConfig'
-import { MongoClient, ServerApiVersion } from 'mongodb'
+import mongoose from 'mongoose'
 
-const client = new MongoClient(envConfig.MONGO_URI, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-})
-
-const connect = async () => {
-  await client.connect()
-  console.log('Connected successfully to MongoDB')
+async function connectToDb() {
+  try {
+    await mongoose.connect(envConfig.MONGO_URI)
+    console.log('Connected to MongoDB')
+  } catch (error) {
+    console.error('Error connecting to MongoDB', error)
+  }
 }
 
-export default connect
+export default connectToDb
