@@ -14,7 +14,7 @@
     "dev": "nodemon --watch src --watch public -e ts,json,js,pug --exec yarn start:dev",
     "start:dev": "yarn build && yarn start",
     "start": "node dist/app.js",
-    "build": "yarn run clean && tsc --project ./config/tsconfig.build.json && tsc-alias && cp -r ./public/ ./dist",
+    "build": "yarn run clean && tsc --project ./config/tsconfig.build.json && tsc-alias && shx cp -r ./public/ ./dist",
     "clean": "rimraf ./dist",
     "prettier": "prettier --check \"**/*.+(js|jsx|ts|tsx|json|yml|yaml|md|css)\"",
     "prettier:fix": "prettier --write \"**/*.+(js|jsx|ts|tsx|json|yml|yaml|md|css)\"",
@@ -63,6 +63,7 @@
     "nodemon": "^3.0.1",
     "prettier": "^3.0.0",
     "rimraf": "^5.0.1",
+    "shx": "^0.3.4",
     "tsc-alias": "^1.8.7",
     "typescript": "^5.1.6"
   }
