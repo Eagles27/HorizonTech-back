@@ -24,9 +24,16 @@ const ERROR_INTERNAL_SERVER_ERROR = z.object({
   message: z.string(),
 })
 
+const ERROR_UNAUTHORIZED = z.object({
+  statusCode: z.literal(401),
+  error: z.string(),
+  message: z.string(),
+})
+
 export type TError = z.infer<typeof ERROR_CONFLICT>
 export type TErrorBadRequest = z.infer<typeof ERROR_BAD_REQUEST>
 export type TErrorNotFound = z.infer<typeof ERROR_NOT_FOUND>
 export type TErrorInternalServerError = z.infer<typeof ERROR_INTERNAL_SERVER_ERROR>
+export type TErrorUnauthorized = z.infer<typeof ERROR_UNAUTHORIZED>
 
-export { ERROR_CONFLICT, ERROR_BAD_REQUEST, ERROR_NOT_FOUND, ERROR_INTERNAL_SERVER_ERROR }
+export { ERROR_CONFLICT, ERROR_BAD_REQUEST, ERROR_NOT_FOUND, ERROR_INTERNAL_SERVER_ERROR, ERROR_UNAUTHORIZED }
