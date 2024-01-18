@@ -1,6 +1,9 @@
 import USER_MONGOOSE from '@/schema/mongoose'
 import { TUserPostBody, USER_POST_BODY } from '@/schema/user'
 import { FastifyReply, FastifyRequest } from 'fastify'
+import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
+import envConfig from '@/configs/envConfig'
 
 type TRequest = FastifyRequest<{
   Body: TUserPostBody
@@ -15,9 +18,18 @@ const postUserHandler = async (req: TRequest, res: FastifyReply) => {
     const userExists = await USER_MONGOOSE.exists({ email: req.body.email })
     if (userExists) throw new Error('User already exists')
 
+    // Hasher le mot de passe
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(req.body.password, salt)
+    req.body.password = hashedPassword
+
     // Ajouter l'utilisateur en base de données
     const user = await USER_MONGOOSE.create(req.body)
-    res.code(201).send(user)
+
+    // Générer un token
+    const token = jwt.sign({ _id: user._id }, envConfig.JWT_SECRET)
+
+    res.code(201).send({ token })
   } catch (error) {
     if (error instanceof Error) {
       if (error.message === 'User already exists') {
