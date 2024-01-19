@@ -1,0 +1,47 @@
+[
+  {
+    "question": "Niveau détudes ou secteur professionnel actuel ?",
+    "response": [
+      "Collègienne",
+      "Lycéenne",
+      "Etudiante universitaire",
+      "Professionnelle en debut de carrière ( < 3 ans )",
+      "Professionnelle experimentée ( > 3 ans )"
+    ]
+  },
+  {
+    "question": "Dans quel secteur travaillez-vous actuellement ou dans lequel vous aimeriez travailler à l’avenir ? ( 1 seule réponse possible )",
+    "response": [
+      "Aéronautique",
+      "Retail & Luxe ",
+      "Recherche",
+      "Santé",
+      "Industrie alimentaire / agroalimentaire ",
+      "Industrie automobile",
+      "Informatique et Technologique ",
+      "Education",
+      "Cybersécurité",
+      "Energie et environnement"
+    ]
+  },
+  {
+    "question": "Quel type d’activité de loisir préférez-vous ? ( 1 seule réponse possible )",
+    "response": [
+      "Activités en plein air (randonnée,sport,voyages..)",
+      "Loisirs créatifs (arts,musiques…)",
+      "Activités intellectuelles (lectures, jeux de société …)"
+    ]
+  },
+  {
+    "question": "Quel est votre type de voyage préféré ? ( 1 seule réponse possible )",
+    "response": [
+      "Aventurière : exploration active et aventure.",
+      "Culturelle: visites de musées, sites historiques",
+      "Détente: vacances paisibles et relaxantes"
+    ]
+  },
+  {
+    "question": "Etes-vous actuellement impliqué(e) dans des activités bénévoles ou des engagements sociaux ?",
+    "response": ["Oui, activement impliqué(e)", "Participe occasionnellement", "Non, pas actuellement impliqué(e)"]
+  }
+]
