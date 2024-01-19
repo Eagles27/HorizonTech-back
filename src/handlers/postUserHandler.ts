@@ -1,4 +1,4 @@
-import USER_MONGOOSE from '@/schema/mongoose'
+import { USER_MONGOOSE } from '@/schema/mongoose'
 import { TUserPostBody, USER_POST_BODY } from '@/schema/user'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import bcrypt from 'bcryptjs'

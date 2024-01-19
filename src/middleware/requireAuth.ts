@@ -1,5 +1,5 @@
 import envConfig from '@/configs/envConfig'
-import USER_MONGOOSE from '@/schema/mongoose'
+import { USER_MONGOOSE } from '@/schema/mongoose'
 import { TUserId } from '@/schema/user'
 import { FastifyRequest, FastifyReply } from 'fastify'
 import jwt from 'jsonwebtoken'
