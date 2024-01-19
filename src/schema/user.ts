@@ -5,6 +5,7 @@ const USER_POST_BODY = z.object({
   lastname: z.string().min(3),
   email: z.string().email(),
   password: z.string().min(8),
+  finishedSignup: z.boolean().default(false),
 })
 
 const USER_POST_BODY_LOGIN = z.object({
@@ -29,6 +30,7 @@ const USER = z.object({
   firstname: z.string(),
   lastname: z.string(),
   email: z.string(),
+  finishedSignup: z.boolean(),
 })
 
 export type TUserPostBody = z.infer<typeof USER_POST_BODY>

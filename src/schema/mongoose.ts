@@ -19,6 +19,10 @@ const userSchema = new Schema<TUserPostBody>({
     type: String,
     required: true,
   },
+  finishedSignup: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 // User model
