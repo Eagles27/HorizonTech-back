@@ -1,5 +1,5 @@
 import requireAuth from '@/middleware/requireAuth'
-import USER_MONGOOSE from '@/schema/mongoose'
+import { USER_MONGOOSE } from '@/schema/mongoose'
 import { TUser } from '@/schema/user'
 import { FastifyReply, FastifyRequest } from 'fastify'
 
