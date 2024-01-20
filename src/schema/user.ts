@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 const USER_POST_BODY = z.object({
+  role: z.enum(['Etudiante', 'Marraine']),
   firstname: z.string().min(3),
   lastname: z.string().min(3),
   email: z.string().email(),

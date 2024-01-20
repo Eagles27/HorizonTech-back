@@ -24,6 +24,10 @@ const userSchema = new Schema<TUserPostBody>({
     type: Boolean,
     default: false,
   },
+  role: {
+    type: String,
+    required: true,
+  },
 })
 
 // User model
