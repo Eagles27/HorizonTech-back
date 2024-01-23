@@ -32,6 +32,7 @@ const USER = z.object({
   lastname: z.string(),
   email: z.string(),
   finishedSignup: z.boolean(),
+  role: z.enum(['Etudiante', 'Marraine']),
 })
 
 export type TUserPostBody = z.infer<typeof USER_POST_BODY>

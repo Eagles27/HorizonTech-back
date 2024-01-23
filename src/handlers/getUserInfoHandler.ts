@@ -15,7 +15,7 @@ const getUserInfoHandler = async (req: TRequest, res: FastifyReply) => {
 
   try {
     const userResponse = await USER_MONGOOSE.findOne({ _id: userId }).select(
-      '_id firstname lastname email finishedSignup'
+      '_id firstname lastname email finishedSignup role'
     )
     if (!userResponse) throw new Error('User not found')
     const user: TUser = {
@@ -24,6 +24,7 @@ const getUserInfoHandler = async (req: TRequest, res: FastifyReply) => {
       lastname: userResponse.lastname,
       email: userResponse.email,
       finishedSignup: userResponse.finishedSignup,
+      role: userResponse.role,
     }
     res.send(user)
   } catch (error) {
