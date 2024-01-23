@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
 import { TUserPostBody } from './user'
 import { TForm } from './form'
-import { TFormPost, TFormAnswer } from './form_answer'
+import { TFormAnswerElement, TFormAnswers } from './form_answer'
 
 // User schema
 const userSchema = new Schema<TUserPostBody>({
@@ -58,7 +58,7 @@ const FORM_MONGOOSE = model<TForm>('Form', formSchema)
 export { FORM_MONGOOSE }
 
 // Form Answer schema
-const formAnswerSchema = new Schema<TFormAnswer>({
+const formAnswerSchema = new Schema<TFormAnswerElement>({
   question: {
     type: String,
     required: true,
@@ -69,14 +69,14 @@ const formAnswerSchema = new Schema<TFormAnswer>({
   },
 })
 
-const formPostSchema = new Schema<TFormPost>({
+const formPostSchema = new Schema<TFormAnswers>({
   user_id: {
     type: String,
     required: true,
   },
   responses: [formAnswerSchema],
 })
-formPostSchema.index({ user_id: 1, 'responses.question': 1 }, { unique: true })
+
 // Form Answer model
-const FORM_ANSWER_MONGOOSE = model<TFormPost>('FormAnswer', formPostSchema)
+const FORM_ANSWER_MONGOOSE = model<TFormAnswers>('FormAnswer', formPostSchema)
 export { FORM_ANSWER_MONGOOSE }
