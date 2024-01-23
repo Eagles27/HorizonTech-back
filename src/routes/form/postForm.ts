@@ -19,7 +19,7 @@ const schema: FastifySchema = {
 }
 
 const postForm: FastifyPluginAsync = async (fastify): Promise<void> => {
-  fastify.post('/reponsesform', { schema }, postFormHandler)
+  fastify.post('/submit', { schema }, postFormHandler)
 }
 
 export default postForm

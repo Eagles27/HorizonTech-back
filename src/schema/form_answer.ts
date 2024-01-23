@@ -25,10 +25,10 @@ const FORM_ANSWERS = z.object({
   responses: z.array(FORM_ANSWER_ELEMENT_WITH_ID),
 })
 
-export type TFormAnswersElementwithID = z.infer<typeof FORM_ANSWER_ELEMENT_WITH_ID>
-export type TFormAnswers = z.infer<typeof FORM_ANSWERS>
 export type TFormAnswerElement = z.infer<typeof FORM_ANSWER_ELEMENT>
-export type TFormPost = z.infer<typeof FORM_POST_BODY>
+export type TFormAnswersElementwithID = z.infer<typeof FORM_ANSWER_ELEMENT_WITH_ID>
+export type TFormPostBody = z.infer<typeof FORM_POST_BODY>
 export type TFormResponse = z.infer<typeof FORM_RESPONSE>
+export type TFormAnswers = z.infer<typeof FORM_ANSWERS>
 
 export { FORM_POST_BODY, FORM_ANSWER_ELEMENT, FORM_RESPONSE, FORM_ANSWERS, FORM_ANSWER_ELEMENT_WITH_ID }
