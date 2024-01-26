@@ -35,11 +35,14 @@ const USER = z.object({
   role: z.enum(['Etudiante', 'Marraine']),
 })
 
+const USERS = z.array(USER)
+
 export type TUserPostBody = z.infer<typeof USER_POST_BODY>
 export type TUserPostBodyLogin = z.infer<typeof USER_POST_BODY_LOGIN>
 export type TUserLoginResponse = z.infer<typeof USER_LOGIN_RESPONSE>
 export type TUserId = z.infer<typeof USER_ID>
 export type TUserHeader = z.infer<typeof USER_HEADER>
 export type TUser = z.infer<typeof USER>
+export type TUsers = z.infer<typeof USERS>
 
-export { USER_POST_BODY, USER, USER_POST_BODY_LOGIN, USER_LOGIN_RESPONSE, USER_ID, USER_HEADER }
+export { USER_POST_BODY, USER, USER_POST_BODY_LOGIN, USER_LOGIN_RESPONSE, USER_ID, USER_HEADER, USERS }

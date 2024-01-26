@@ -2,7 +2,6 @@ import { Schema, model } from 'mongoose'
 import { TUserPostBody } from './user'
 import { TForm } from './form'
 import { TFormAnswerElement, TFormAnswers } from './form_answer'
-import { TMarraineInfo } from './info_marraine'
 
 // User schema
 const userSchema = new Schema<TUserPostBody>({
@@ -81,34 +80,3 @@ const formPostSchema = new Schema<TFormAnswers>({
 // Form Answer model
 const FORM_ANSWER_MONGOOSE = model<TFormAnswers>('FormAnswer', formPostSchema)
 export { FORM_ANSWER_MONGOOSE }
-
-// Marraines Info Schema
-
-const marraineSchema = new Schema<TMarraineInfo>([
-  {
-    firstname: {
-      type: String,
-      required: true,
-    },
-    lastname: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-    },
-    finishedSignup: {
-      type: Boolean,
-      default: false,
-    },
-    role: {
-      type: String,
-      required: true,
-    },
-  },
-])
-
-// Marraines model
-const MARRAINE_MONGOOSE = model<TMarraineInfo>('Marraine', marraineSchema)
-export { MARRAINE_MONGOOSE }
