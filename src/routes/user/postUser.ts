@@ -3,7 +3,6 @@ import { ERROR_BAD_REQUEST, ERROR_CONFLICT, ERROR_INTERNAL_SERVER_ERROR } from '
 import { USER_LOGIN_RESPONSE, USER_POST_BODY } from '@/schema/user'
 import { FastifyPluginAsync, FastifySchema } from 'fastify'
 
-// Ajouter les réponses
 const schema: FastifySchema = {
   body: USER_POST_BODY,
   response: {
