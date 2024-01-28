@@ -29,7 +29,10 @@ const USER_HEADER = z.object({
 const USER_CONTACT = z.object({
   contact_id: z.string(),
   invitationAccepted: z.boolean(),
+  _id: z.string().optional(),
 })
+
+const USER_CONTACTS = z.array(USER_CONTACT)
 
 const USER = z.object({
   _id: z.string(),
@@ -56,6 +59,7 @@ export type TUser = z.infer<typeof USER>
 export type TUsers = z.infer<typeof USERS>
 export type TUserContact = z.infer<typeof USER_CONTACT>
 export type TUserPostMatchBody = z.infer<typeof USER_POST_MATCH_BODY>
+export type TUserContacts = z.infer<typeof USER_CONTACTS>
 
 export {
   USER_POST_BODY,
@@ -67,4 +71,5 @@ export {
   USERS,
   USER_CONTACT,
   USER_POST_MATCH_BODY,
+  USER_CONTACTS,
 }
