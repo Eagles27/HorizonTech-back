@@ -36,7 +36,7 @@ const userSchema = new Schema({
           type: String,
           required: true,
         },
-        accepted: {
+        invitationAccepted: {
           type: Boolean,
           default: false,
         },
