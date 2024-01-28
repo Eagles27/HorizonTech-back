@@ -13,6 +13,7 @@ const schema: FastifySchema = {
     409: ERROR_CONFLICT,
     500: ERROR_INTERNAL_SERVER_ERROR,
   },
+  tags: ['user'],
 }
 
 const postMatch: FastifyPluginAsync = async (fastify) => {
