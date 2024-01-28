@@ -1,9 +1,10 @@
 import getMarraineHandler from '@/handlers/getMarrainesInfoHandler'
 import { ERROR_INTERNAL_SERVER_ERROR, ERROR_NOT_FOUND, ERROR_UNAUTHORIZED } from '@/schema/error'
-import { USERS } from '@/schema/user'
+import { USERS, USER_HEADER } from '@/schema/user'
 import { FastifyPluginAsync, FastifySchema } from 'fastify'
 
 const schema: FastifySchema = {
+  headers: USER_HEADER,
   response: {
     200: USERS,
     401: ERROR_UNAUTHORIZED,
