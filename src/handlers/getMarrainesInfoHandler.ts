@@ -14,10 +14,18 @@ const getMarraineHandler = async (req: TRequest, res: FastifyReply) => {
   if (!userId) return
 
   try {
-    const marraineResponse = await USER_MONGOOSE.find({ role: 'Marraine' }).select(
-      '_id firstname lastname email finishedSignup role'
-    )
-    if (!marraineResponse) throw new Error('User not found')
+    const user = (await USER_MONGOOSE.findById(userId)) as TUser
+    if (!user) throw new Error('User not found')
+
+    const contactIds = user.contacts?.map((contact) => contact.contact_id) || []
+
+    const marraineResponse = await USER_MONGOOSE.find({
+      role: 'Marraine',
+      _id: { $nin: contactIds },
+    }).select('_id firstname lastname email finishedSignup role')
+
+    if (!marraineResponse) throw new Error('Marraines not found')
+    
     const marraine: TUser[] = marraineResponse.map((userResponse) => ({
       _id: userResponse._id.toString(),
       firstname: userResponse.firstname,
@@ -32,6 +40,7 @@ const getMarraineHandler = async (req: TRequest, res: FastifyReply) => {
     if (error instanceof Error) {
       console.error(error)
       if (error.message === 'User not found') res.notFound(error.message)
+      if (error.message === 'Marraines not found') res.notFound(error.message)
     }
     res.internalServerError()
   }

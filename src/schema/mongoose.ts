@@ -4,7 +4,7 @@ import { TForm } from './form'
 import { TFormAnswerElement, TFormAnswers } from './form_answer'
 
 // User schema
-const userSchema = new Schema<TUserPostBody>({
+const userSchema = new Schema({
   firstname: {
     type: String,
     required: true,
@@ -28,6 +28,21 @@ const userSchema = new Schema<TUserPostBody>({
   role: {
     type: String,
     required: true,
+  },
+  contacts: {
+    type: [
+      {
+        contact_id: {
+          type: String,
+          required: true,
+        },
+        invitationAccepted: {
+          type: Boolean,
+          default: false,
+        },
+      },
+    ],
+    required: false,
   },
 })
 

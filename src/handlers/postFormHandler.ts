@@ -1,4 +1,4 @@
-import { FORM_ANSWER_MONGOOSE } from '@/schema/mongoose'
+import { FORM_ANSWER_MONGOOSE, USER_MONGOOSE } from '@/schema/mongoose'
 import { FORM_POST_BODY, TFormPostBody, TFormResponse } from '@/schema/form_answer'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import requireAuth from '@/middleware/requireAuth'
@@ -31,11 +31,19 @@ const postFormHandler = async (req: TRequest, res: FastifyReply) => {
     const form: TFormResponse = {
       _id: formResponse._id.toString(),
     }
+    if (formResponse) {
+      const user = await USER_MONGOOSE.findOneAndUpdate({ _id: userId._id }, { finishedSignup: true })
+      if (!user) throw new Error('User path failed')
+    }
     res.code(201).send(form)
   } catch (error) {
     if (error instanceof Error) {
       if (error.message === 'Form already exists') {
         res.conflict(error.message)
+        return
+      }
+      if (error.message === 'User path failed') {
+        res.internalServerError()
         return
       }
       res.badRequest(error.message)
