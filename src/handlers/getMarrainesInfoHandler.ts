@@ -25,7 +25,7 @@ const getMarraineHandler = async (req: TRequest, res: FastifyReply) => {
     }).select('_id firstname lastname email finishedSignup role')
 
     if (!marraineResponse) throw new Error('Marraines not found')
-
+    
     const marraine: TUser[] = marraineResponse.map((userResponse) => ({
       _id: userResponse._id.toString(),
       firstname: userResponse.firstname,

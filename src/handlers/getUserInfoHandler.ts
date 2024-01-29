@@ -30,7 +30,10 @@ const getUserInfoHandler = async (req: TRequest, res: FastifyReply) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error)
-      if (error.message === 'User not found') res.notFound(error.message)
+      if (error.message === 'User not found') {
+        res.notFound(error.message)
+        return
+      }
     }
     res.internalServerError()
   }
