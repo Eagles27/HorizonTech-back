@@ -50,8 +50,6 @@ const USER_POST_MATCH_BODY = z.object({
   contact_id: z.string(),
 })
 
-const USERS = z.array(USER)
-
 export type TUserPostBody = z.infer<typeof USER_POST_BODY>
 export type TUserPostBodyLogin = z.infer<typeof USER_POST_BODY_LOGIN>
 export type TUserLoginResponse = z.infer<typeof USER_LOGIN_RESPONSE>

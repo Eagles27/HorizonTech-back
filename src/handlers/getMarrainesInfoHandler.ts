@@ -25,7 +25,7 @@ const getMarraineHandler = async (req: TRequest, res: FastifyReply) => {
     }).select('_id firstname lastname email finishedSignup role')
 
     if (!marraineResponse) throw new Error('Marraines not found')
-    
+
     const marraine: TUser[] = marraineResponse.map((userResponse) => ({
       _id: userResponse._id.toString(),
       firstname: userResponse.firstname,
@@ -39,8 +39,14 @@ const getMarraineHandler = async (req: TRequest, res: FastifyReply) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error)
-      if (error.message === 'User not found') res.notFound(error.message)
-      if (error.message === 'Marraines not found') res.notFound(error.message)
+      if (error.message === 'User not found') {
+        res.notFound(error.message)
+        return
+      }
+      if (error.message === 'Marraines not found') {
+        res.notFound(error.message)
+        return
+      }
     }
     res.internalServerError()
   }

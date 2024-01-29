@@ -14,8 +14,6 @@ const getFormAnswersHandler = async (req: TRequest, res: FastifyReply) => {
   if (!userId) return
   try {
     const formResponses = await FORM_ANSWER_MONGOOSE.findOne({ user_id: userId._id })
-    console.log(formResponses)
-
     if (!formResponses) throw new Error('Form not found')
     const formAnswer: TFormAnswers = {
       _id: formResponses._id.toString(),
