@@ -8,16 +8,16 @@ HorizonTech vise à combler l'écart entre les genres dans le domaine scientifiq
 
 # Objectifs du Projet
 
-    Encourager les jeunes femmes à poursuivre des carrières scientifiques.
-    Fournir des conseils personnalisés par le biais de notre plateforme web.
-    Faciliter les échanges entre les étudiantes et les professionnelles.
+Encourager les jeunes femmes à poursuivre des carrières scientifiques.
+Fournir des conseils personnalisés par le biais de notre plateforme web.
+Faciliter les échanges entre les étudiantes et les professionnelles.
 
 ## Fonctionnalités Principales
 
-    Création de profils pour les utilisatrices avec des informations d'orientation.
-    Mise en relation personnalisée entre filleules et marraines.
-    Plateforme de discussion pour des conseils instantanés.
-    Consultation de fiche métiers via un Métier-Pédia.
+Création de profils pour les utilisatrices avec des informations d'orientation.
+Mise en relation personnalisée entre filleules et marraines.
+Plateforme de discussion pour des conseils instantanés.
+Consultation de fiche métiers via un Métier-Pédia.
 
 ## Architecture Technique
 
@@ -33,13 +33,13 @@ Le projet respecte les lois Règlement Général sur la Protection des Données 
 
 ## Exécution du Serveur
 
-    Pour démarrer le serveur, utilisez la commande : yarn dev
-    Le serveur sera accessible à l'adresse : http://localhost:5000
+Pour démarrer le serveur, utilisez la commande : yarn dev
+Le serveur sera accessible à l'adresse : http://localhost:5000
 
 ## Sécurité
 
-    Authentification basée sur des jetons JWT
-    Stockage sécurisé des mots de passe avec hachage et salage
+Authentification basée sur des jetons JWT
+Stockage sécurisé des mots de passe avec hachage et salage
 
 ## Licence
 
