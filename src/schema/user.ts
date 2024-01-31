@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { FORM_ANSWERS } from './form_answer'
 
 const USER_POST_BODY = z.object({
   role: z.enum(['Etudiante', 'Marraine']),
@@ -42,6 +43,7 @@ const USER = z.object({
   finishedSignup: z.boolean(),
   role: z.enum(['Etudiante', 'Marraine']),
   contacts: z.optional(z.array(USER_CONTACT)),
+  formAnswer: z.optional(FORM_ANSWERS),
 })
 
 const USERS = z.array(USER)

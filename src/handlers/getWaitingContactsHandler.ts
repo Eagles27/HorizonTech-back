@@ -1,5 +1,6 @@
 import requireAuth from '@/middleware/requireAuth'
-import { USER_MONGOOSE } from '@/schema/mongoose'
+import { TFormAnswers } from '@/schema/form_answer'
+import { FORM_ANSWER_MONGOOSE, USER_MONGOOSE } from '@/schema/mongoose'
 import { TUser } from '@/schema/user'
 import { FastifyReply, FastifyRequest } from 'fastify'
 
@@ -28,6 +29,8 @@ const getWaitingContactsHandler = async (req: TRequest, res: FastifyReply) => {
       waitingContacts.map(async (contact) => {
         const contactUser = (await USER_MONGOOSE.findById(contact.contact_id)) as TUser
         if (!contactUser) throw new Error('Contact user not found')
+
+        const formAnswer = (await FORM_ANSWER_MONGOOSE.findOne({ user_id: contactUser._id })) as TFormAnswers
         return {
           _id: contactUser._id.toString(),
           firstname: contactUser.firstname,
@@ -35,6 +38,15 @@ const getWaitingContactsHandler = async (req: TRequest, res: FastifyReply) => {
           email: contactUser.email,
           finishedSignup: contactUser.finishedSignup,
           role: contactUser.role,
+          formAnswer: {
+            _id: formAnswer._id.toString(),
+            user_id: formAnswer.user_id.toString(),
+            responses: formAnswer.responses.map((response) => ({
+              _id: response._id.toString(),
+              question: response.question,
+              response: response.response,
+            })),
+          },
         }
       })
     )
