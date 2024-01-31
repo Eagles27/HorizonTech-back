@@ -1,7 +1,8 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import requireAuth from '@/middleware/requireAuth'
-import { USER_MONGOOSE } from '@/schema/mongoose'
+import { FORM_ANSWER_MONGOOSE, USER_MONGOOSE } from '@/schema/mongoose'
 import { TUser } from '@/schema/user'
+import { TFormAnswers } from '@/schema/form_answer'
 
 type TRequest = FastifyRequest<{
   Headers: {
@@ -26,15 +27,28 @@ const getMarraineHandler = async (req: TRequest, res: FastifyReply) => {
 
     if (!marraineResponse) throw new Error('Marraines not found')
 
-    const marraine: TUser[] = marraineResponse.map((userResponse) => ({
-      _id: userResponse._id.toString(),
-      firstname: userResponse.firstname,
-      lastname: userResponse.lastname,
-      email: userResponse.email,
-      finishedSignup: userResponse.finishedSignup,
-      role: userResponse.role,
-    }))
-
+    const marraine: TUser[] = await Promise.all(
+      marraineResponse.map(async (userResponse) => {
+        const formAnswer = (await FORM_ANSWER_MONGOOSE.findOne({ user_id: userResponse._id })) as TFormAnswers
+        return {
+          _id: userResponse._id.toString(),
+          firstname: userResponse.firstname,
+          lastname: userResponse.lastname,
+          email: userResponse.email,
+          finishedSignup: userResponse.finishedSignup,
+          role: userResponse.role,
+          formAnswer: {
+            _id: formAnswer._id.toString(),
+            user_id: formAnswer.user_id.toString(),
+            responses: formAnswer.responses.map((response) => ({
+              _id: response._id.toString(),
+              question: response.question,
+              response: response.response,
+            })),
+          },
+        }
+      })
+    )
     res.send(marraine)
   } catch (error) {
     if (error instanceof Error) {
