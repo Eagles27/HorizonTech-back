@@ -1,9 +1,11 @@
 import getFormAnswerWithIdHandler from '@/handlers/postFormAnswersIdHandler'
 import { ERROR_INTERNAL_SERVER_ERROR, ERROR_NOT_FOUND, ERROR_UNAUTHORIZED } from '@/schema/error'
 import { FORM_ANSWERS } from '@/schema/form_answer'
+import { USER_HEADER } from '@/schema/user'
 import { FastifyPluginAsync, FastifySchema } from 'fastify'
 
 const schema: FastifySchema = {
+  headers: USER_HEADER,
   response: {
     200: FORM_ANSWERS,
     401: ERROR_UNAUTHORIZED,
