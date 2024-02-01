@@ -18,6 +18,8 @@ const getMarraineHandler = async (req: TRequest, res: FastifyReply) => {
     const user = (await USER_MONGOOSE.findById(userId)) as TUser
     if (!user) throw new Error('User not found')
 
+    const userFormResponse = (await FORM_ANSWER_MONGOOSE.findOne({ user_id: userId._id })) as TFormAnswers
+
     const contactIds = user.contacts?.map((contact) => contact.contact_id) || []
 
     const marraineResponse = await USER_MONGOOSE.find({
@@ -49,6 +51,36 @@ const getMarraineHandler = async (req: TRequest, res: FastifyReply) => {
         }
       })
     )
+
+    const userResponse = userFormResponse.responses.find(
+      (response) =>
+        response.question ===
+        'Dans quel secteur travaillez-vous actuellement ou dans lequel vous aimeriez travailler à l’avenir ? ( 1 seule réponse possible )'
+    )?.response
+
+    console.log(userResponse)
+
+    marraine.sort((a, b) => {
+      const aResponse = a.formAnswer?.responses.find(
+        (response) =>
+          response.question ===
+          'Dans quel secteur travaillez-vous actuellement ou dans lequel vous aimeriez travailler à l’avenir ? ( 1 seule réponse possible )'
+      )
+      const bResponse = b.formAnswer?.responses.find(
+        (response) =>
+          response.question ===
+          'Dans quel secteur travaillez-vous actuellement ou dans lequel vous aimeriez travailler à l’avenir ? ( 1 seule réponse possible )'
+      )
+
+      if (aResponse?.response === userResponse && bResponse?.response !== userResponse) {
+        return -1
+      }
+      if (bResponse?.response === userResponse && aResponse?.response !== userResponse) {
+        return 1
+      }
+      return 0
+    })
+
     res.send(marraine)
   } catch (error) {
     if (error instanceof Error) {
